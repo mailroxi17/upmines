@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document Verification</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 30px 15px;
+      color: #222;
+    }
+
+    .box {
+      max-width: 650px;
+      margin: 40px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .private {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 25px;
+    }
+
+    .status {
+      background: #e8f5e9;
+      color: #187a2f;
+      padding: 14px;
+      text-align: center;
+      border-radius: 6px;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #eee;
+      padding: 12px 0;
+      gap: 20px;
+    }
+
+    .label {
+      font-weight: bold;
+    }
+
+    .button {
+      display: block;
+      text-align: center;
+      background: #1769aa;
+      color: white;
+      text-decoration: none;
+      padding: 14px;
+      border-radius: 6px;
+      margin-top: 25px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="box">
+
+  <h1>Document Verification</h1>
+
+  <div class="private">
+    Private document verification service
+  </div>
+
+  <div class="status">
+    ✓ Document available for verification
+  </div>
+
+  <div class="row">
+    <span class="label">Document ID</span>
+    <span id="documentId">Loading...</span>
+  </div>
+
+  <div class="row">
+    <span class="label">Registration Number</span>
+    <span>UP12CT8705</span>
+  </div>
+
+  <div class="row">
+    <span class="label">Vehicle Type</span>
+    <span>18 TYRE TRUCK</span>
+  </div>
+
+  <div class="row">
+    <span class="label">Mineral</span>
+    <span>BAJRI(SINGLE)</span>
+  </div>
+
+  <div class="row">
+    <span class="label">Loading Location</span>
+    <span>FARRUKHABAD</span>
+  </div>
+
+  <div class="row">
+    <span class="label">Destination</span>
+    <span>PATNA BIHAR</span>
+  </div>
+
+  <a class="button" href="/446080.pdf" target="_blank">
+    View Document PDF
+  </a>
+
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const eId = params.get("eId");
+
+  document.getElementById("documentId").textContent =
+    eId || "Not provided";
+</script>
+
+</body>
+</html>
