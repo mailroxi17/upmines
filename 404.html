@@ -1,132 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document Verification</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document Verification Portal</title>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      margin: 0;
-      padding: 30px 15px;
-      color: #222;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f2f5f8;
+  color: #222;
+}
 
-    .box {
-      max-width: 650px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-    }
+.header {
+  background: #123b63;
+  color: white;
+  padding: 22px 20px;
+  text-align: center;
+}
 
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
-    }
+.header h1 {
+  margin: 0;
+  font-size: 25px;
+}
 
-    .private {
-      text-align: center;
-      color: #666;
-      font-size: 14px;
-      margin-bottom: 25px;
-    }
+.header p {
+  margin: 7px 0 0;
+  font-size: 14px;
+}
 
-    .status {
-      background: #e8f5e9;
-      color: #187a2f;
-      padding: 14px;
-      text-align: center;
-      border-radius: 6px;
-      font-weight: bold;
-      margin-bottom: 25px;
-    }
+.container {
+  max-width: 650px;
+  margin: 45px auto;
+  padding: 0 15px;
+}
 
-    .row {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding: 12px 0;
-      gap: 20px;
-    }
+.card {
+  background: white;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
 
-    .label {
-      font-weight: bold;
-    }
+h2 {
+  text-align: center;
+  margin-top: 0;
+}
 
-    .button {
-      display: block;
-      text-align: center;
-      background: #1769aa;
-      color: white;
-      text-decoration: none;
-      padding: 14px;
-      border-radius: 6px;
-      margin-top: 25px;
-      font-weight: bold;
-    }
-  </style>
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 28px;
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.button {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: 0;
+  background: #1769aa;
+  color: white;
+  padding: 14px;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+}
+
+.status {
+  background: #e8f5e9;
+  color: #187a2f;
+  padding: 14px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 22px;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 13px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.footer {
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+  margin-top: 25px;
+}
+</style>
 </head>
 
 <body>
 
-<div class="box">
+<div class="header">
+  <h1>Document Verification Portal</h1>
+  <p>Private document verification service</p>
+</div>
 
-  <h1>Document Verification</h1>
+<div class="container">
+  <div class="card" id="portal">
 
-  <div class="private">
-    Private document verification service
+    <h2>Verify Your Document</h2>
+
+    <p class="subtitle">
+      Enter the document ID below to verify the document.
+    </p>
+
+    <input
+      class="input"
+      id="documentInput"
+      type="text"
+      placeholder="Enter Document ID"
+    >
+
+    <button class="button" onclick="verifyDocument()">
+      Verify Document
+    </button>
+
+    <div class="footer">
+      Private document verification service
+    </div>
+
   </div>
-
-  <div class="status">
-    ✓ Document available for verification
-  </div>
-
-  <div class="row">
-    <span class="label">Document ID</span>
-    <span id="documentId">Loading...</span>
-  </div>
-
-  <div class="row">
-    <span class="label">Registration Number</span>
-    <span>UP12CT8705</span>
-  </div>
-
-  <div class="row">
-    <span class="label">Vehicle Type</span>
-    <span>18 TYRE TRUCK</span>
-  </div>
-
-  <div class="row">
-    <span class="label">Mineral</span>
-    <span>BAJRI(SINGLE)</span>
-  </div>
-
-  <div class="row">
-    <span class="label">Loading Location</span>
-    <span>FARRUKHABAD</span>
-  </div>
-
-  <div class="row">
-    <span class="label">Destination</span>
-    <span>PATNA BIHAR</span>
-  </div>
-
-  <a class="button" href="/446080.pdf" target="_blank">
-    View Document PDF
-  </a>
-
 </div>
 
 <script>
-  const params = new URLSearchParams(window.location.search);
-  const eId = params.get("eId");
 
-  document.getElementById("documentId").textContent =
-    eId || "Not provided";
+const params = new URLSearchParams(window.location.search);
+const eId = params.get("eId");
+
+if (eId) {
+  document.getElementById("documentInput").value = eId;
+}
+
+function verifyDocument() {
+
+  const id = document.getElementById("documentInput").value.trim();
+
+  if (!id) {
+    alert("Please enter a document ID.");
+    return;
+  }
+
+  const currentPath = window.location.pathname;
+
+  window.location.href =
+    currentPath + "?eId=" + encodeURIComponent(id) + "&verify=true";
+}
+
+if (params.get("verify") === "true") {
+
+  document.querySelector(".container").innerHTML = `
+    <div class="card">
+
+      <h2>Document Verification</h2>
+
+      <p class="subtitle">
+        Private document verification service
+      </p>
+
+      <div class="status">
+        ✓ Document available for verification
+      </div>
+
+      <div class="row">
+        <span class="label">Document ID</span>
+        <span>${eId || ""}</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Registration Number</span>
+        <span>UP12CT8705</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Vehicle Type</span>
+        <span>18 TYRE TRUCK</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Mineral</span>
+        <span>BAJRI(SINGLE)</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Loading Location</span>
+        <span>FARRUKHABAD</span>
+      </div>
+
+      <div class="row">
+        <span class="label">Destination</span>
+        <span>PATNA BIHAR</span>
+      </div>
+
+      <br>
+
+      <a class="button" href="/446080.pdf" target="_blank">
+        View Document PDF
+      </a>
+
+      <div class="footer">
+        Private document verification service
+      </div>
+
+    </div>
+  `;
+}
+
 </script>
 
 </body>
