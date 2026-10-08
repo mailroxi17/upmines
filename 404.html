@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mining</title>
+<title>Mining - Private Test</title>
 
 <style>
     * {
@@ -33,6 +33,19 @@
         border: 2px solid #8f3b32;
         border-radius: 4px;
         overflow: hidden;
+    }
+
+    /* PRIVATE TEST NOTICE */
+
+    .test-notice {
+        background: #f3e7e7;
+        color: #7d2525;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px;
+        border-bottom: 1px solid #8f3b32;
+        letter-spacing: 0.3px;
     }
 
     /* HEADER */
@@ -70,7 +83,7 @@
         background: #f2f2f2;
     }
 
-    /* MAROON BAR */
+    /* RED HEADINGS */
 
     .red-bar {
         margin: 0 15px;
@@ -79,9 +92,32 @@
         text-align: center;
         font-size: 16px;
         font-weight: bold;
-        font-variant: small-caps;
         padding: 3px 5px;
         border: 1px solid #873737;
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+
+    .vehicle-title {
+        background: #9b4545;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+
+    /*
+       First letter of each word is deliberately larger.
+       Remaining letters stay CAPITAL letters.
+    */
+
+    .initial {
+        font-size: 1.28em;
+        font-weight: bold;
+        line-height: 0;
     }
 
     /* MAIN TABLE */
@@ -105,6 +141,7 @@
     .label {
         width: 25%;
         font-weight: normal;
+        box-shadow: inset 2px 0 0 #e1e1e1;
     }
 
     .value {
@@ -129,16 +166,6 @@
         padding: 0 15px;
     }
 
-    .vehicle-title {
-        background: #9b4545;
-        color: white;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold;
-        font-variant: small-caps;
-        padding: 3px;
-    }
-
     .vehicle-table {
         width: 100%;
         border-collapse: collapse;
@@ -157,6 +184,7 @@
     .vehicle-label {
         width: 25%;
         font-weight: normal;
+        box-shadow: inset 2px 0 0 #e1e1e1;
     }
 
     .vehicle-value {
@@ -211,6 +239,10 @@
         .validity {
             font-size: 15px;
         }
+
+        .initial {
+            font-size: 1.2em;
+        }
     }
 </style>
 </head>
@@ -221,18 +253,22 @@
 
 <div class="certificate">
 
+    <div class="test-notice">
+        PRIVATE TEST / MOCKUP — NOT AN OFFICIAL GOVERNMENT DOCUMENT
+    </div>
+
     <div class="official-heading">
 
         <div class="main">
-            Directorate Of Geology &amp; Mining Uttar Pradesh
+            Mining Verification
         </div>
 
         <div class="sub">
-            The Uttar Pradesh Minerals (Prevention of Illegal Mining, Transportation and Storage) Rules, 2018
+            Private Certificate Verification Service
         </div>
 
         <div class="rule">
-            eForm-C Pass For Transportation of Minor Mineral See Rule-7(III)
+            eForm-C Verification Record
         </div>
 
     </div>
@@ -242,7 +278,10 @@
     </div>
 
     <div class="red-bar">
-        VALID FOR ONE TRIP ONLY &amp; SEE Rule-5(2)
+        <span class="initial">V</span>ALID
+        FOR ONE TRIP ONLY &amp;
+        <span class="initial">S</span>EE
+        <span class="initial">R</span>ULE-5(2)
     </div>
 
     <table class="main-table">
@@ -402,7 +441,7 @@
             </td>
 
             <td class="label">
-                18.Serial Number:
+                18. Serial Number:
             </td>
 
             <td class="value">
@@ -416,7 +455,12 @@
     <div class="vehicle-box">
 
         <div class="vehicle-title">
-            DETAILS OF REGISTERED VEHICLE
+
+            <span class="initial">D</span>ETAILS
+            <span class="initial">O</span>F
+            <span class="initial">R</span>EGISTERED
+            <span class="initial">V</span>EHICLE
+
         </div>
 
         <table class="vehicle-table">
