@@ -3,211 +3,286 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Mining</title>
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     body {
         margin: 0;
-        padding: 30px 15px;
-        background: #f5f5f5;
+        padding: 18px;
+        background: #ffffff;
+        color: #222;
         font-family: "Times New Roman", Times, serif;
-        color: #000;
     }
 
-    .container {
-        max-width: 900px;
-        margin: auto;
-        background: white;
-        border: 1px solid #999;
-        padding: 25px;
+    .certificate {
+        width: 100%;
+        max-width: 1050px;
+        margin: 0 auto;
+        border: 1px solid #888;
+        background: #fff;
     }
 
-    .title {
+    /* Top title */
+    .top-title {
         text-align: center;
-        font-size: 30px;
+        font-size: 25px;
         font-weight: bold;
-        margin-bottom: 20px;
+        padding: 10px 0 5px;
     }
 
-    .banner {
-        background: #7b1e1e;
+    .mining {
+        text-align: center;
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    /* Original-style maroon header */
+    .main-header {
+        background: #7d2525;
         color: white;
         text-align: center;
-        padding: 10px;
-        font-size: 16px;
         font-weight: bold;
-        margin-bottom: 20px;
+        font-size: 17px;
+        padding: 8px 5px;
+        border: 1px solid #6b1e1e;
     }
 
+    /* Main certificate table */
     table {
         width: 100%;
         border-collapse: collapse;
-        margin-bottom: 25px;
-        font-size: 16px;
+        table-layout: fixed;
     }
 
     td {
         border: 1px solid #999;
-        padding: 9px 10px;
-        vertical-align: top;
+        padding: 8px 9px;
+        vertical-align: middle;
+        font-size: 15px;
+        line-height: 1.25;
     }
 
-    td:first-child {
-        width: 38%;
+    .label {
         font-weight: bold;
-        background: #f1f1f1;
+        width: 17%;
+        background: #fafafa;
     }
 
-    .section-title {
-        background: #7b1e1e;
+    .value {
+        width: 16%;
+    }
+
+    .label-wide {
+        font-weight: bold;
+        width: 17%;
+        background: #fafafa;
+    }
+
+    .value-wide {
+        width: 33%;
+    }
+
+    /* Vehicle section */
+    .section-header {
+        background: #7d2525;
         color: white;
-        padding: 9px;
-        font-size: 18px;
+        text-align: center;
         font-weight: bold;
-        margin-top: 20px;
-        margin-bottom: 0;
+        font-size: 16px;
+        padding: 8px;
+        border: 1px solid #6b1e1e;
+        letter-spacing: 0.3px;
+    }
+
+    .vehicle-label {
+        font-weight: bold;
+        width: 25%;
+        background: #fafafa;
+    }
+
+    .vehicle-value {
+        width: 25%;
+    }
+
+    /* Validity statement */
+    .validity {
+        text-align: center;
+        font-size: 17px;
+        font-weight: bold;
+        padding: 13px 8px;
+        border-top: 1px solid #999;
     }
 
     .footer {
         text-align: center;
-        margin-top: 25px;
-        font-size: 14px;
+        font-size: 13px;
+        padding: 10px;
+        color: #555;
+    }
+
+    /* Keep certificate readable on phones */
+    @media (max-width: 700px) {
+        body {
+            padding: 6px;
+        }
+
+        .top-title {
+            font-size: 21px;
+        }
+
+        .mining {
+            font-size: 19px;
+        }
+
+        .main-header {
+            font-size: 13px;
+        }
+
+        td {
+            font-size: 12px;
+            padding: 6px;
+        }
+
+        .validity {
+            font-size: 14px;
+        }
     }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="certificate">
 
-    <div class="title">Mining</div>
+    <div class="top-title">eForm-C</div>
 
-    <div class="banner">
-        VALIDATION RECORD — PRIVATE VERIFICATION SERVICE
+    <div class="mining">Mining</div>
+
+    <div class="main-header">
+        VALID FOR ONE TRIP ONLY &amp; SEE RULE-5(2)
     </div>
 
     <table>
+
         <tr>
-            <td>eForm-C No.</td>
-            <td id="eid">Not provided</td>
+            <td class="label">1. eForm-C No.</td>
+            <td class="value" id="eid">Not provided</td>
+
+            <td class="label">2. Licensee Id:</td>
+            <td class="value">31342506990014</td>
         </tr>
 
         <tr>
-            <td>Licensee Id</td>
-            <td>31342506990014</td>
+            <td class="label">3. Name of Licensee:</td>
+            <td class="value">MULAYAM SINGH</td>
+
+            <td class="label">4. Mobile Number Of Licensee:</td>
+            <td class="value">7453062511</td>
         </tr>
 
         <tr>
-            <td>Name of Licensee</td>
-            <td>MULAYAM SINGH</td>
+            <td class="label">5. Destination District:</td>
+            <td class="value">PATNA</td>
+
+            <td class="label">6. Licensee Details [Address, Village, Gata/Khand, Areal]:</td>
+            <td class="value">
+                RAJEPUR POST HARSINGHPUR HUSAINPUR AMRITPUR FARRUKHABAD, KHANPUR, 320 360, 0.902
+            </td>
         </tr>
 
         <tr>
-            <td>Mobile Number of Licensee</td>
-            <td>7453062511</td>
+            <td class="label">7. Tehsil Of License:</td>
+            <td class="value">FARRUKHABAD</td>
+
+            <td class="label">8. District Of License:</td>
+            <td class="value">FARRUKHABAD</td>
         </tr>
 
         <tr>
-            <td>Destination District</td>
-            <td>PATNA</td>
+            <td class="label">9. Quantity Transported:</td>
+            <td class="value">25 M3</td>
+
+            <td class="label">10. Name Of Mineral:</td>
+            <td class="value">BAJRI(SINGLE)</td>
         </tr>
 
         <tr>
-            <td>Licensee Details</td>
-            <td>RAJEPUR POST HARSINGHPUR HUSAINPUR AMRITPUR FARRUKHABAD, KHANPUR</td>
+            <td class="label">11. Loading From:</td>
+            <td class="value">FARRUKHABAD</td>
+
+            <td class="label">12. Destination (Delivery Address):</td>
+            <td class="value">
+                RABINDRA KUMAR / SHARMA VIKRAM / PATNA BIHAR
+            </td>
         </tr>
 
         <tr>
-            <td>Tehsil of License</td>
-            <td>FARRUKHABAD</td>
+            <td class="label">13. Distance (Approx):</td>
+            <td class="value">733 K.M.</td>
+
+            <td class="label">14. Traveling Duration:</td>
+            <td class="value">43 Hr (Approx)</td>
         </tr>
 
         <tr>
-            <td>District of License</td>
-            <td>FARRUKHABAD</td>
+            <td class="label">15. eForm-C Generated On:</td>
+            <td class="value">04-03-2026 02:50:32 PM</td>
+
+            <td class="label">16. eForm-C Valid Upto:</td>
+            <td class="value">06-03-2026 09:55:32 AM</td>
         </tr>
 
         <tr>
-            <td>Quantity Transported</td>
-            <td>25 M3</td>
+            <td class="label">17. Selling Price(Rs per tonne):</td>
+            <td class="value">280</td>
+
+            <td class="label">18. Serial Number:</td>
+            <td class="value">AAYGG446080</td>
         </tr>
 
-        <tr>
-            <td>Name of Mineral</td>
-            <td>BAJRI(SINGLE)</td>
-        </tr>
-
-        <tr>
-            <td>Loading From</td>
-            <td>FARRUKHABAD</td>
-        </tr>
-
-        <tr>
-            <td>Destination / Delivery Address</td>
-            <td>RABINDRA KUMAR / SHARMA VIKRAM / PATNA BIHAR</td>
-        </tr>
-
-        <tr>
-            <td>Distance</td>
-            <td>733 K.M.</td>
-        </tr>
-
-        <tr>
-            <td>Traveling Duration</td>
-            <td>43 Hr (Approx)</td>
-        </tr>
-
-        <tr>
-            <td>eForm-C Generated On</td>
-            <td>04-03-2026 02:50:32 PM</td>
-        </tr>
-
-        <tr>
-            <td>eForm-C Valid Upto</td>
-            <td>06-03-2026 09:55:32 AM</td>
-        </tr>
-
-        <tr>
-            <td>Selling Price</td>
-            <td>280</td>
-        </tr>
-
-        <tr>
-            <td>Serial Number</td>
-            <td>AAYGG446080</td>
-        </tr>
     </table>
 
-    <div class="section-title">
+    <div class="section-header">
         DETAILS OF REGISTERED VEHICLE
     </div>
 
     <table>
+
         <tr>
-            <td>Registration Number</td>
-            <td>UP12CT8705</td>
+            <td class="vehicle-label">1. Registration Number:</td>
+            <td class="vehicle-value">UP12CT8705</td>
+
+            <td class="vehicle-label">2. Name Of Driver:</td>
+            <td class="vehicle-value">HAJAR</td>
         </tr>
 
         <tr>
-            <td>Name of Driver</td>
-            <td>HAJAR</td>
+            <td class="vehicle-label">3. Gross Vehicle Weight in Tonne:</td>
+            <td class="vehicle-value">0</td>
+
+            <td class="vehicle-label">4. Carrying capacity of vehicle in Tonne:</td>
+            <td class="vehicle-value">0</td>
         </tr>
 
         <tr>
-            <td>Gross Vehicle Weight</td>
-            <td>0</td>
+            <td class="vehicle-label">5. Mobile Number Of Driver:</td>
+            <td class="vehicle-value">7310585721</td>
+
+            <td class="vehicle-label"></td>
+            <td class="vehicle-value"></td>
         </tr>
 
-        <tr>
-            <td>Carrying Capacity</td>
-            <td>0</td>
-        </tr>
-
-        <tr>
-            <td>Driver Mobile</td>
-            <td>7310585721</td>
-        </tr>
     </table>
+
+    <div class="validity">
+        This eForm-C is valid up to 06-03-2026 09:55:32 AM
+    </div>
 
     <div class="footer">
         Private certificate verification service
