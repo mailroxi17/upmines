@@ -13,144 +13,191 @@
 
     body {
         margin: 0;
-        padding: 18px;
-        background: #ffffff;
+        background: #f7f5ef;
         color: #222;
         font-family: "Times New Roman", Times, serif;
     }
 
-    .certificate {
-        width: 100%;
-        max-width: 1050px;
-        margin: 0 auto;
-        border: 1px solid #888;
-        background: #fff;
+    .back {
+        position: absolute;
+        top: 18px;
+        left: 38px;
+        font-size: 16px;
     }
 
-    /* Top title */
-    .top-title {
+    .certificate {
+        width: 850px;
+        max-width: calc(100% - 40px);
+        margin: 52px auto 20px auto;
+        background: #fff;
+        border: 1px solid #c99c70;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    /* ORIGINAL HEADER */
+    .official-heading {
         text-align: center;
+        padding: 8px 15px 4px 15px;
+    }
+
+    .official-heading .main {
         font-size: 25px;
         font-weight: bold;
-        padding: 10px 0 5px;
+        line-height: 1.05;
     }
 
-    .mining {
-        text-align: center;
-        font-size: 22px;
+    .official-heading .sub {
+        font-size: 16px;
         font-weight: bold;
+        line-height: 1.15;
+    }
+
+    .official-heading .rule {
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.15;
+    }
+
+    .eform {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 16px;
         margin-bottom: 8px;
     }
 
-    /* Original-style maroon header */
-    .main-header {
-        background: #7d2525;
-        color: white;
+    /* MAROON BAR */
+    .red-bar {
+        margin: 0 15px;
+        background: #9b4545;
+        color: #fff;
         text-align: center;
+        font-size: 16px;
         font-weight: bold;
-        font-size: 17px;
-        padding: 8px 5px;
-        border: 1px solid #6b1e1e;
+        padding: 3px 5px;
+        border: 1px solid #873737;
     }
 
-    /* Main certificate table */
-    table {
+    /* MAIN TABLE */
+    .main-table {
+        width: calc(100% - 30px);
+        margin: 0 15px;
+        border-collapse: collapse;
+        table-layout: fixed;
+    }
+
+    .main-table td {
+        border: 1px solid #d1d1d1;
+        padding: 7px 10px;
+        font-size: 15px;
+        line-height: 1.1;
+        vertical-align: middle;
+    }
+
+    .label {
+        width: 25%;
+    }
+
+    .value {
+        width: 25%;
+    }
+
+    .tall-row td {
+        height: 76px;
+        vertical-align: middle;
+    }
+
+    .medium-row td {
+        height: 55px;
+    }
+
+    /* VEHICLE */
+    .vehicle-box {
+        border: 1px solid #9b4545;
+        margin-top: 0;
+        padding: 0 15px 0 15px;
+    }
+
+    .vehicle-title {
+        background: #9b4545;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+        padding: 3px;
+    }
+
+    .vehicle-table {
         width: 100%;
         border-collapse: collapse;
         table-layout: fixed;
     }
 
-    td {
-        border: 1px solid #999;
-        padding: 8px 9px;
-        vertical-align: middle;
+    .vehicle-table td {
+        border: 1px solid #d1d1d1;
+        padding: 7px 10px;
         font-size: 15px;
-        line-height: 1.25;
-    }
-
-    .label {
-        font-weight: bold;
-        width: 17%;
-        background: #fafafa;
-    }
-
-    .value {
-        width: 16%;
-    }
-
-    .label-wide {
-        font-weight: bold;
-        width: 17%;
-        background: #fafafa;
-    }
-
-    .value-wide {
-        width: 33%;
-    }
-
-    /* Vehicle section */
-    .section-header {
-        background: #7d2525;
-        color: white;
-        text-align: center;
-        font-weight: bold;
-        font-size: 16px;
-        padding: 8px;
-        border: 1px solid #6b1e1e;
-        letter-spacing: 0.3px;
+        line-height: 1.1;
+        vertical-align: middle;
     }
 
     .vehicle-label {
-        font-weight: bold;
         width: 25%;
-        background: #fafafa;
     }
 
     .vehicle-value {
         width: 25%;
     }
 
-    /* Validity statement */
     .validity {
         text-align: center;
-        font-size: 17px;
-        font-weight: bold;
-        padding: 13px 8px;
-        border-top: 1px solid #999;
+        font-size: 20px;
+        padding: 12px 5px;
+        font-weight: normal;
     }
 
-    .footer {
+    .private-note {
         text-align: center;
-        font-size: 13px;
-        padding: 10px;
-        color: #555;
+        font-size: 12px;
+        color: #666;
+        padding-bottom: 7px;
     }
 
-    /* Keep certificate readable on phones */
-    @media (max-width: 700px) {
-        body {
-            padding: 6px;
+    @media (max-width: 900px) {
+        .certificate {
+            width: calc(100% - 20px);
+            max-width: none;
+            margin-top: 45px;
         }
 
-        .top-title {
-            font-size: 21px;
+        .back {
+            left: 15px;
         }
+    }
 
-        .mining {
+    @media (max-width: 600px) {
+        .official-heading .main {
             font-size: 19px;
         }
 
-        .main-header {
+        .official-heading .sub,
+        .official-heading .rule {
             font-size: 13px;
         }
 
-        td {
+        .eform {
+            font-size: 18px;
+        }
+
+        .main-table td,
+        .vehicle-table td {
             font-size: 12px;
             padding: 6px;
         }
 
         .validity {
-            font-size: 14px;
+            font-size: 15px;
         }
     }
 </style>
@@ -158,17 +205,33 @@
 
 <body>
 
+<a class="back" href="/">Back</a>
+
 <div class="certificate">
 
-    <div class="top-title">eForm-C</div>
+    <div class="official-heading">
+        <div class="main">
+            Directorate Of Geology &amp; Mining Uttar Pradesh
+        </div>
 
-    <div class="mining">Mining</div>
+        <div class="sub">
+            The Uttar Pradesh Minerals Prevention of Illegal Mining, Transportation and Storage Rules, 2018
+        </div>
 
-    <div class="main-header">
-        VALID FOR ONE TRIP ONLY &amp; SEE RULE-5(2)
+        <div class="rule">
+            eForm-C Pass For Transportation of Minor Mineral See Rule-7(III)
+        </div>
     </div>
 
-    <table>
+    <div class="eform">
+        eForm-C
+    </div>
+
+    <div class="red-bar">
+        VALID FOR ONE TRIP ONLY &amp; SEE Rule-5(2)
+    </div>
+
+    <table class="main-table">
 
         <tr>
             <td class="label">1. eForm-C No.</td>
@@ -186,13 +249,22 @@
             <td class="value">7453062511</td>
         </tr>
 
-        <tr>
-            <td class="label">5. Destination District:</td>
+        <tr class="tall-row">
+            <td class="label">5. Destination District :</td>
             <td class="value">PATNA</td>
 
-            <td class="label">6. Licensee Details [Address, Village, Gata/Khand, Areal]:</td>
+            <td class="label">
+                6. Licensee Details<br>
+                [Address,Village,<br>
+                (Gata/Khand),Areal]:
+            </td>
+
             <td class="value">
-                RAJEPUR POST HARSINGHPUR HUSAINPUR AMRITPUR FARRUKHABAD, KHANPUR, 320 360, 0.902
+                RAJEPUR POST<br>
+                HARSINGHPUR<br>
+                HUSAINPUR AMRITPUR<br>
+                FARRUKHABAD,<br>
+                KHANPUR, 320 360, 0.902
             </td>
         </tr>
 
@@ -212,21 +284,26 @@
             <td class="value">BAJRI(SINGLE)</td>
         </tr>
 
-        <tr>
+        <tr class="medium-row">
             <td class="label">11. Loading From:</td>
             <td class="value">FARRUKHABAD</td>
 
-            <td class="label">12. Destination (Delivery Address):</td>
+            <td class="label">
+                12. Destination (Delivery Address):
+            </td>
+
             <td class="value">
-                RABINDRA KUMAR / SHARMA VIKRAM / PATNA BIHAR
+                RABINDRA KUMAR<br>
+                SHARMA VIKRAM<br>
+                PATNA BIHAR
             </td>
         </tr>
 
         <tr>
-            <td class="label">13. Distance (Approx):</td>
+            <td class="label">13. Distance(Approx):</td>
             <td class="value">733 K.M.</td>
 
-            <td class="label">14. Traveling Duration:</td>
+            <td class="label">14. Traveling Duration :</td>
             <td class="value">43 Hr (Approx)</td>
         </tr>
 
@@ -242,49 +319,78 @@
             <td class="label">17. Selling Price(Rs per tonne):</td>
             <td class="value">280</td>
 
-            <td class="label">18. Serial Number:</td>
+            <td class="label">18.Serial Number:</td>
             <td class="value">AAYGG446080</td>
         </tr>
 
     </table>
 
-    <div class="section-header">
-        DETAILS OF REGISTERED VEHICLE
+    <div class="vehicle-box">
+
+        <div class="vehicle-title">
+            DETAILS OF REGISTERED VEHICLE
+        </div>
+
+        <table class="vehicle-table">
+
+            <tr>
+                <td class="vehicle-label">
+                    1. Registration Number :
+                </td>
+
+                <td class="vehicle-value">
+                    UP12CT8705
+                </td>
+
+                <td class="vehicle-label">
+                    2. Name Of Driver :
+                </td>
+
+                <td class="vehicle-value">
+                    HAJAR
+                </td>
+            </tr>
+
+            <tr>
+                <td class="vehicle-label">
+                    3. Gross Vehicle Weight in Tonne:
+                </td>
+
+                <td class="vehicle-value">
+                    0
+                </td>
+
+                <td class="vehicle-label">
+                    4. Carrying capacity of vehicle in Tonne:
+                </td>
+
+                <td class="vehicle-value">
+                    0
+                </td>
+            </tr>
+
+            <tr>
+                <td class="vehicle-label">
+                    5. Mobile Number Of Driver:
+                </td>
+
+                <td class="vehicle-value">
+                    7310585721
+                </td>
+
+                <td class="vehicle-label"></td>
+                <td class="vehicle-value"></td>
+            </tr>
+
+        </table>
+
     </div>
-
-    <table>
-
-        <tr>
-            <td class="vehicle-label">1. Registration Number:</td>
-            <td class="vehicle-value">UP12CT8705</td>
-
-            <td class="vehicle-label">2. Name Of Driver:</td>
-            <td class="vehicle-value">HAJAR</td>
-        </tr>
-
-        <tr>
-            <td class="vehicle-label">3. Gross Vehicle Weight in Tonne:</td>
-            <td class="vehicle-value">0</td>
-
-            <td class="vehicle-label">4. Carrying capacity of vehicle in Tonne:</td>
-            <td class="vehicle-value">0</td>
-        </tr>
-
-        <tr>
-            <td class="vehicle-label">5. Mobile Number Of Driver:</td>
-            <td class="vehicle-value">7310585721</td>
-
-            <td class="vehicle-label"></td>
-            <td class="vehicle-value"></td>
-        </tr>
-
-    </table>
 
     <div class="validity">
         This eForm-C is valid up to 06-03-2026 09:55:32 AM
     </div>
 
-    <div class="footer">
+    <div class="private-note">
         Private certificate verification service
     </div>
 
