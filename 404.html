@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Mining</title>
+<title>Mining - Private Test</title>
 
 <style>
     * {
@@ -34,6 +34,21 @@
         border-radius: 4px;
         overflow: hidden;
     }
+
+    /* PRIVATE TEST NOTICE */
+
+    .test-notice {
+        background: #f3e7e7;
+        color: #7d2525;
+        text-align: center;
+        font-size: 12px;
+        font-weight: bold;
+        padding: 4px;
+        border-bottom: 1px solid #8f3b32;
+        letter-spacing: 0.3px;
+    }
+
+    /* HEADER */
 
     .official-heading {
         text-align: center;
@@ -68,26 +83,45 @@
         background: #f2f2f2;
     }
 
-    /* RED BAR */
+    /* RED HEADINGS */
+
     .red-bar {
         margin: 0 15px;
         background: #9b4545;
         color: #fff;
         text-align: center;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: bold;
         padding: 3px 5px;
         border: 1px solid #873737;
         text-transform: uppercase;
+        letter-spacing: 0;
     }
 
-    /* Slightly larger first letters */
-    .initial {
-        font-size: 1.16em;
+    .vehicle-title {
+        background: #9b4545;
+        color: white;
+        text-align: center;
+        font-size: 16px;
         font-weight: bold;
+        padding: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0;
+    }
+
+    /*
+       First letter of each word is deliberately larger.
+       Remaining letters stay CAPITAL letters.
+    */
+
+    .initial {
+        font-size: 1.28em;
+        font-weight: bold;
+        line-height: 0;
     }
 
     /* MAIN TABLE */
+
     .main-table {
         width: calc(100% - 30px);
         margin: 0 15px;
@@ -96,7 +130,7 @@
     }
 
     .main-table td {
-        border: 1px solid #bdbdbd;
+        border: 1px solid #cfcfcf;
         padding: 7px 10px;
         font-size: 14px;
         line-height: 1.12;
@@ -104,24 +138,10 @@
         background: #fff;
     }
 
-    /* Full first-column edge/shadow */
-    .main-table td:nth-child(1) {
-        box-shadow:
-            inset 3px 0 0 #d0d0d0,
-            inset 0 1px 0 #e5e5e5,
-            inset 0 -1px 0 #e5e5e5;
-    }
-
-    .main-table td:nth-child(3) {
-        box-shadow:
-            inset 2px 0 0 #e0e0e0,
-            inset 0 1px 0 #eeeeee,
-            inset 0 -1px 0 #eeeeee;
-    }
-
     .label {
         width: 25%;
         font-weight: normal;
+        box-shadow: inset 2px 0 0 #e1e1e1;
     }
 
     .value {
@@ -146,16 +166,6 @@
         padding: 0 15px;
     }
 
-    .vehicle-title {
-        background: #9b4545;
-        color: white;
-        text-align: center;
-        font-size: 14px;
-        font-weight: bold;
-        padding: 3px;
-        text-transform: uppercase;
-    }
-
     .vehicle-table {
         width: 100%;
         border-collapse: collapse;
@@ -163,7 +173,7 @@
     }
 
     .vehicle-table td {
-        border: 1px solid #bdbdbd;
+        border: 1px solid #cfcfcf;
         padding: 7px 10px;
         font-size: 14px;
         line-height: 1.12;
@@ -171,23 +181,10 @@
         background: #fff;
     }
 
-    .vehicle-table td:nth-child(1) {
-        box-shadow:
-            inset 3px 0 0 #d0d0d0,
-            inset 0 1px 0 #e5e5e5,
-            inset 0 -1px 0 #e5e5e5;
-    }
-
-    .vehicle-table td:nth-child(3) {
-        box-shadow:
-            inset 2px 0 0 #e0e0e0,
-            inset 0 1px 0 #eeeeee,
-            inset 0 -1px 0 #eeeeee;
-    }
-
     .vehicle-label {
         width: 25%;
         font-weight: normal;
+        box-shadow: inset 2px 0 0 #e1e1e1;
     }
 
     .vehicle-value {
@@ -244,7 +241,7 @@
         }
 
         .initial {
-            font-size: 1.12em;
+            font-size: 1.2em;
         }
     }
 </style>
@@ -256,14 +253,18 @@
 
 <div class="certificate">
 
+    <div class="test-notice">
+        PRIVATE TEST / MOCKUP — NOT AN OFFICIAL GOVERNMENT DOCUMENT
+    </div>
+
     <div class="official-heading">
 
         <div class="main">
-            Mining
+            Mining Verification
         </div>
 
         <div class="sub">
-            Private Certificate Verification
+            Private Certificate Verification Service
         </div>
 
         <div class="rule">
@@ -302,6 +303,7 @@
         </tr>
 
         <tr class="tall-row">
+
             <td class="label">
                 5. Destination District :
             </td>
@@ -323,9 +325,11 @@
                 FARRUKHABAD,<br>
                 KHANPUR, 320 360, 0.902
             </td>
+
         </tr>
 
         <tr>
+
             <td class="label">
                 7. Tehsil Of License:
             </td>
@@ -341,9 +345,11 @@
             <td class="value">
                 FARRUKHABAD
             </td>
+
         </tr>
 
         <tr>
+
             <td class="label">
                 9. Quantity Transported:
             </td>
@@ -359,9 +365,11 @@
             <td class="value">
                 BAJRI(SINGLE)
             </td>
+
         </tr>
 
         <tr class="medium-row">
+
             <td class="label">
                 11. Loading From:
             </td>
@@ -379,9 +387,11 @@
                 SHARMA VIKRAM<br>
                 PATNA BIHAR
             </td>
+
         </tr>
 
         <tr>
+
             <td class="label">
                 13. Distance(Approx):
             </td>
@@ -397,9 +407,11 @@
             <td class="value">
                 43 Hr (Approx)
             </td>
+
         </tr>
 
         <tr>
+
             <td class="label">
                 15. eForm-C Generated On:
             </td>
@@ -415,9 +427,11 @@
             <td class="value">
                 06-03-2026 09:55:32 AM
             </td>
+
         </tr>
 
         <tr>
+
             <td class="label">
                 17. Selling Price(Rs per tonne):
             </td>
@@ -433,6 +447,7 @@
             <td class="value">
                 AAYGG446080
             </td>
+
         </tr>
 
     </table>
@@ -440,15 +455,18 @@
     <div class="vehicle-box">
 
         <div class="vehicle-title">
+
             <span class="initial">D</span>ETAILS
             <span class="initial">O</span>F
             <span class="initial">R</span>EGISTERED
             <span class="initial">V</span>EHICLE
+
         </div>
 
         <table class="vehicle-table">
 
             <tr>
+
                 <td class="vehicle-label">
                     1. Registration Number :
                 </td>
@@ -464,9 +482,11 @@
                 <td class="vehicle-value">
                     HAJAR
                 </td>
+
             </tr>
 
             <tr>
+
                 <td class="vehicle-label">
                     3. Gross Vehicle Weight in Tonne:
                 </td>
@@ -482,9 +502,11 @@
                 <td class="vehicle-value">
                     0
                 </td>
+
             </tr>
 
             <tr>
+
                 <td class="vehicle-label">
                     5. Mobile Number Of Driver:
                 </td>
@@ -494,7 +516,9 @@
                 </td>
 
                 <td class="vehicle-label"></td>
+
                 <td class="vehicle-value"></td>
+
             </tr>
 
         </table>
