@@ -2,142 +2,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Document Generator</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f3f5f9;
-      margin: 0;
-      color: #243044;
-    }
-    header {
-      background: #183153;
-      color: white;
-      padding: 22px;
-      text-align: center;
-    }
-    main {
-      max-width: 850px;
-      margin: 30px auto;
-      padding: 0 16px;
-    }
-    .panel {
-      background: white;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 3px 15px #00000012;
-    }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-    }
-    label {
-      display: block;
-      font-weight: bold;
-      margin-bottom: 6px;
-    }
-    input, textarea {
-      width: 100%;
-      box-sizing: border-box;
-      padding: 11px;
-      border: 1px solid #cbd5e1;
-      border-radius: 6px;
-      font: inherit;
-    }
-    .field { margin-bottom: 16px; }
-    button {
-      background: #183153;
-      color: white;
-      padding: 12px 22px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .notice {
-      background: #fff8e7;
-      padding: 12px;
-      border-radius: 6px;
-      margin-bottom: 20px;
-    }
-    @media(max-width: 600px) {
-      .grid { grid-template-columns: 1fr; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Private Document Generator</title>
+<style>
+body{font-family:Arial,sans-serif;background:#f2f4f7;color:#222;margin:0}
+header{background:#183153;color:white;padding:20px;text-align:center}
+main{max-width:1000px;margin:25px auto;padding:15px}
+.panel{background:white;padding:22px;border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{display:block;font-weight:bold;margin-bottom:5px;font-size:14px}
+input,textarea{box-sizing:border-box;width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:inherit}
+.field{margin-bottom:8px}
+button{background:#183153;color:white;border:0;border-radius:5px;padding:12px 18px;cursor:pointer;margin:10px 8px 0 0}
+.notice{background:#fff4d6;padding:12px;border-radius:5px;line-height:1.5}
+#output{margin-top:25px}
+.copy{background:white;padding:22px;margin:20px 0;border:1px solid #aaa;break-after:page;page-break-after:always}
+.copy:last-child{break-after:auto;page-break-after:auto}
+.private-mark{text-align:center;color:#a22;font-weight:bold;border:1px solid #a22;padding:5px;margin-bottom:12px}
+.copy h2{text-align:center;font-size:18px}
+.copy h3{text-align:center;font-size:15px}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+td{border:1px solid #888;padding:6px;overflow-wrap:anywhere;font-size:12px;vertical-align:top}
+td:first-child{width:43%;font-weight:bold}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.copy{padding:10px}}
+@media print{
+  body{background:white}
+  header,main>.panel,#output>h2{display:none!important}
+  main{max-width:none;margin:0;padding:0}
+  #output{margin:0}
+  .copy{margin:0;padding:10mm;border:0}
+  .copy td{font-size:10pt}
+  @page{size:A4;margin:10mm}
+}
+</style>
 </head>
 <body>
-  <header>
-    <h1>Document Generator</h1>
-    <p>Private Record Management</p>
-  </header>
+<header>
+<h1>Private Document Generator</h1>
+<p>Record Entry and Three-Copy PDF</p>
+</header>
 
-  <main>
-    <div class="panel">
-      <div class="notice">
-        Setup preview only. Login, database,
-        PDF generation and saving are not connected yet.
-        Do not enter real personal information.
-      </div>
+<main>
+<div class="panel">
+<div class="notice">
+<strong>Private record system.</strong> This template is not an
+official government certificate. Enter test information first.
+Records are not saved online in this version.
+</div>
 
-      <h2>Create New Record</h2>
+<h2>Enter Record Details</h2>
+<form id="recordForm">
+<div class="grid" id="fields"></div>
+<button type="submit">Generate Three Copies</button>
+<button type="button" onclick="window.print()">Print / Save as PDF</button>
+<button type="reset" id="resetButton">Clear Form</button>
+</form>
+<p id="status" role="status"></p>
+</div>
+<section id="output">
+<h2>PDF Preview</h2>
+<div id="copies"></div>
+</section>
+</main>
 
-      <form id="recordForm">
-        <div class="grid">
-          <div class="field">
-            <label>Record Number</label>
-            <input name="recordNumber" required>
-          </div>
-          <div class="field">
-            <label>Licensee ID</label>
-            <input name="licenseeId">
-          </div>
-          <div class="field">
-            <label>Licensee Name</label>
-            <input name="licenseeName">
-          </div>
-          <div class="field">
-            <label>Mobile Number</label>
-            <input name="mobile">
-          </div>
-          <div class="field">
-            <label>Mineral</label>
-            <input name="mineral">
-          </div>
-          <div class="field">
-            <label>Quantity</label>
-            <input name="quantity">
-          </div>
-          <div class="field">
-            <label>Vehicle Registration</label>
-            <input name="vehicle">
-          </div>
-          <div class="field">
-            <label>Driver Name</label>
-            <input name="driver">
-          </div>
-        </div>
+<script>
+const fields = [
+["recordNumber","Record / eForm-C Number"],
+["licenseeId","Licensee ID"],
+["licenseeName","Licensee Name"],
+["licenseeMobile","Licensee Mobile Number"],
+["licenseeDetails","Licensee Address / Village / Gata / Area"],
+["tehsil","Tehsil of License"],
+["district","District of License"],
+["quantity","Quantity Transported (Cubic Meter / Ton)"],
+["mineral","Name of Mineral"],
+["loadingFrom","Loading From"],
+["destination","Destination / Delivery Address"],
+["distance","Approximate Distance (KM)"],
+["generatedOn","Record Generated On"],
+["validUpto","Record Valid Until"],
+["destinationDistrict","Destination District"],
+["duration","Approximate Travelling Duration"],
+["sellingPrice","Selling Price (Rs)"],
+["serialNumber","Serial Number"],
+["vehicleRegistration","Vehicle Registration Number"],
+["vehicleType","Type of Vehicle"],
+["driverName","Driver Name"],
+["driverMobile","Driver Mobile Number"],
+["driverDL","Driver Driving Licence Number"]
+];
 
-        <div class="field">
-          <label>Destination Address</label>
-          <textarea name="destination" rows="3"></textarea>
-        </div>
+const fieldContainer = document.getElementById("fields");
 
-        <button type="submit">Test Form</button>
-      </form>
+fields.forEach(([name,label]) => {
+  const wrapper = document.createElement("div");
+  wrapper.className = "field";
 
-      <p id="status" role="status"></p>
-    </div>
-  </main>
+  const caption = document.createElement("label");
+  caption.htmlFor = name;
+  caption.textContent = label;
 
-  <script>
-    document.getElementById("recordForm")
-      .addEventListener("submit", function(event) {
-        event.preventDefault();
-        document.getElementById("status").textContent =
-          "Form test successful. No record has been saved.";
-      });
-  </script>
+  const input = document.createElement("input");
+  input.id = name;
+  input.name = name;
+  input.autocomplete = "off";
+
+  wrapper.append(caption,input);
+  fieldContainer.append(wrapper);
+});
+
+const copies = [
+  "Copy 1 — Record Holder",
+  "Copy 2 — Transporter / Recipient",
+  "Copy 3 — Checking Record"
+];
+
+document.getElementById("recordForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const formData = new FormData(event.currentTarget);
+  const values = fields.map(([name,label]) => [
+    label,
+    String(formData.get(name) || "").trim()
+  ]);
+
+  if (!values[0][1]) {
+    document.getElementById("status").textContent =
+      "Please enter a record number.";
+    return;
+  }
+
+  const output = document.getElementById("copies");
+  output.replaceChildren();
+
+  copies.forEach(copyTitle => {
+    const page = document.createElement("article");
+    page.className = "copy";
+
+    const mark = document.createElement("div");
+    mark.className = "private-mark";
+    mark.textContent = "PRIVATE RECORD — NOT AN OFFICIAL GOVERNMENT DOCUMENT";
+
+    const heading = document.createElement("h2");
+    heading.textContent = "TRANSPORT RECORD";
+
+    const subheading = document.createElement("h3");
+    subheading.textContent = copyTitle;
+
+    const table = document.createElement("table");
+    const body = document.createElement("tbody");
+
+    values.forEach(([label,value]) => {
+      const row = document.createElement("tr");
+      const labelCell = document.createElement("td");
+      const valueCell = document.createElement("td");
+
+      labelCell.textContent = label;
+      valueCell.textContent = value || "—";
+
+      row.append(labelCell,valueCell);
+      body.append(row);
+    });
+
+    table.append(body);
+    page.append(mark,heading,subheading,table);
+    output.append(page);
+  });
+
+  document.getElementById("status").textContent =
+    "Three copies generated. Select Print / Save as PDF to save them.";
+  output.scrollIntoView({behavior:"smooth"});
+});
+
+document.getElementById("resetButton").addEventListener("click", () => {
+  document.getElementById("copies").replaceChildren();
+  document.getElementById("status").textContent = "";
+});
+</script>
 </body>
 </html>
