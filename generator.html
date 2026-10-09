@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Document Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f3f5f9;
+      margin: 0;
+      color: #243044;
+    }
+    header {
+      background: #183153;
+      color: white;
+      padding: 22px;
+      text-align: center;
+    }
+    main {
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 0 16px;
+    }
+    .panel {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 3px 15px #00000012;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 6px;
+    }
+    input, textarea {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 11px;
+      border: 1px solid #cbd5e1;
+      border-radius: 6px;
+      font: inherit;
+    }
+    .field { margin-bottom: 16px; }
+    button {
+      background: #183153;
+      color: white;
+      padding: 12px 22px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .notice {
+      background: #fff8e7;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 20px;
+    }
+    @media(max-width: 600px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Document Generator</h1>
+    <p>Private Record Management</p>
+  </header>
+
+  <main>
+    <div class="panel">
+      <div class="notice">
+        Setup preview only. Login, database,
+        PDF generation and saving are not connected yet.
+        Do not enter real personal information.
+      </div>
+
+      <h2>Create New Record</h2>
+
+      <form id="recordForm">
+        <div class="grid">
+          <div class="field">
+            <label>Record Number</label>
+            <input name="recordNumber" required>
+          </div>
+          <div class="field">
+            <label>Licensee ID</label>
+            <input name="licenseeId">
+          </div>
+          <div class="field">
+            <label>Licensee Name</label>
+            <input name="licenseeName">
+          </div>
+          <div class="field">
+            <label>Mobile Number</label>
+            <input name="mobile">
+          </div>
+          <div class="field">
+            <label>Mineral</label>
+            <input name="mineral">
+          </div>
+          <div class="field">
+            <label>Quantity</label>
+            <input name="quantity">
+          </div>
+          <div class="field">
+            <label>Vehicle Registration</label>
+            <input name="vehicle">
+          </div>
+          <div class="field">
+            <label>Driver Name</label>
+            <input name="driver">
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Destination Address</label>
+          <textarea name="destination" rows="3"></textarea>
+        </div>
+
+        <button type="submit">Test Form</button>
+      </form>
+
+      <p id="status" role="status"></p>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById("recordForm")
+      .addEventListener("submit", function(event) {
+        event.preventDefault();
+        document.getElementById("status").textContent =
+          "Form test successful. No record has been saved.";
+      });
+  </script>
+</body>
+</html>
