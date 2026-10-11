@@ -1,183 +1,205 @@
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Private Document Generator</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Private Record Generator</title>
 <style>
-body{font-family:Arial,sans-serif;background:#f2f4f7;color:#222;margin:0}
-header{background:#183153;color:white;padding:20px;text-align:center}
-main{max-width:1000px;margin:25px auto;padding:15px}
-.panel{background:white;padding:22px;border-radius:10px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-label{display:block;font-weight:bold;margin-bottom:5px;font-size:14px}
-input,textarea{box-sizing:border-box;width:100%;padding:10px;border:1px solid #bbb;border-radius:5px;font:inherit}
-.field{margin-bottom:8px}
-button{background:#183153;color:white;border:0;border-radius:5px;padding:12px 18px;cursor:pointer;margin:10px 8px 0 0}
-.notice{background:#fff4d6;padding:12px;border-radius:5px;line-height:1.5}
-#output{margin-top:25px}
-.copy{background:white;padding:22px;margin:20px 0;border:1px solid #aaa;break-after:page;page-break-after:always}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f5f8;color:#222}
+header{background:#183153;color:white;padding:18px;text-align:center}
+main{max-width:1100px;margin:24px auto;padding:14px}
+.panel{background:white;padding:20px;border-radius:10px}
+.notice{background:#fff3cd;padding:12px;margin-bottom:16px}
+.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{display:block;font-weight:bold;font-size:13px;margin-bottom:5px}
+input{width:100%;padding:9px;border:1px solid #bbb;border-radius:5px}
+button{margin:12px 8px 0 0;padding:11px 16px;background:#183153;color:white;border:0;border-radius:5px;cursor:pointer}
+.copy{position:relative;background:white;margin:18px 0;padding:24px;border:1px solid #aaa;break-after:page;page-break-after:always}
 .copy:last-child{break-after:auto;page-break-after:auto}
-.private-mark{text-align:center;color:#a22;font-weight:bold;border:1px solid #a22;padding:5px;margin-bottom:12px}
-.copy h2{text-align:center;font-size:18px}
-.copy h3{text-align:center;font-size:15px}
-table{width:100%;border-collapse:collapse;table-layout:fixed}
-td{border:1px solid #888;padding:6px;overflow-wrap:anywhere;font-size:12px;vertical-align:top}
-td:first-child{width:43%;font-weight:bold}
-@media(max-width:650px){.grid{grid-template-columns:1fr}.copy{padding:10px}}
+.copyhead{text-align:center;font-size:17px;font-weight:bold;margin:12px 115px 22px}
+.qr{position:absolute;right:20px;top:18px;width:100px;height:100px}
+.private-label{text-align:center;color:#8b1e1e;border:1px solid #8b1e1e;padding:4px;font-size:10px;margin-bottom:12px}
+.record-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.item{font-size:12px;line-height:1.4;overflow-wrap:anywhere}
+.item strong{display:block;margin-bottom:3px}
+.wide{grid-column:span 2}
+.full{grid-column:1/-1}
+.vehicle-title{text-align:center;font-weight:bold;margin:24px 0 12px}
+.vehicle-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media(max-width:650px){
+.formgrid,.record-grid,.vehicle-grid{grid-template-columns:1fr}
+.wide,.full{grid-column:auto}
+.qr{position:static;display:block;margin:10px auto}
+.copyhead{margin:12px 0}
+}
 @media print{
-  body{background:white}
-  header,main>.panel,#output>h2{display:none!important}
-  main{max-width:none;margin:0;padding:0}
-  #output{margin:0}
-  .copy{margin:0;padding:10mm;border:0}
-  .copy td{font-size:10pt}
-  @page{size:A4;margin:10mm}
+body{background:white}
+header,.panel,#preview>h2{display:none!important}
+main{margin:0;padding:0;max-width:none}
+.copy{border:0;margin:0;padding:8mm;min-height:0}
+.item{font-size:9pt}
+@page{size:A4 landscape;margin:8mm}
 }
 </style>
 </head>
 <body>
 <header>
-<h1>Private Document Generator</h1>
-<p>Record Entry and Three-Copy PDF</p>
+<h1>Private Record Generator</h1>
+<p>Enter details • Generate three copies</p>
 </header>
-
 <main>
-<div class="panel">
+<section class="panel">
 <div class="notice">
-<strong>Private record system.</strong> This template is not an
-official government certificate. Enter test information first.
-Records are not saved online in this version.
+<strong>Private document template.</strong>
+No database is used. QR codes contain the record data in their URL.
+Anyone with the QR code or URL may be able to read that data.
 </div>
-
 <h2>Enter Record Details</h2>
 <form id="recordForm">
-<div class="grid" id="fields"></div>
+<div class="formgrid" id="fields"></div>
 <button type="submit">Generate Three Copies</button>
 <button type="button" onclick="window.print()">Print / Save as PDF</button>
-<button type="reset" id="resetButton">Clear Form</button>
+<button type="reset" id="clear">Clear Form</button>
 </form>
 <p id="status" role="status"></p>
-</div>
-<section id="output">
-<h2>PDF Preview</h2>
+</section>
+<section id="preview">
+<h2>Preview</h2>
 <div id="copies"></div>
 </section>
 </main>
-
 <script>
-const fields = [
-["recordNumber","Record / eForm-C Number"],
-["licenseeId","Licensee ID"],
-["licenseeName","Licensee Name"],
-["licenseeMobile","Licensee Mobile Number"],
-["licenseeDetails","Licensee Address / Village / Gata / Area"],
-["tehsil","Tehsil of License"],
-["district","District of License"],
-["quantity","Quantity Transported (Cubic Meter / Ton)"],
-["mineral","Name of Mineral"],
-["loadingFrom","Loading From"],
-["destination","Destination / Delivery Address"],
-["distance","Approximate Distance (KM)"],
-["generatedOn","Record Generated On"],
-["validUpto","Record Valid Until"],
-["destinationDistrict","Destination District"],
-["duration","Approximate Travelling Duration"],
-["sellingPrice","Selling Price (Rs)"],
-["serialNumber","Serial Number"],
-["vehicleRegistration","Vehicle Registration Number"],
-["vehicleType","Type of Vehicle"],
-["driverName","Driver Name"],
-["driverMobile","Driver Mobile Number"],
-["driverDL","Driver Driving Licence Number"]
+const fields=[
+["recordNumber","1. eForm-C No."],
+["licenseeId","2. Licensee ID"],
+["licenseeName","3. Name of Licensee"],
+["licenseeMobile","4. Mobile Number of Licensee"],
+["licenseeDetails","5. Licensee Details [Address, Village, Gata/Khand, Area]"],
+["tehsil","6. Tehsil of License"],
+["district","7. District of License"],
+["quantity","8. Quantity Transported (Cubic Meter / Ton)"],
+["mineral","9. Name of Mineral"],
+["loadingFrom","10. Loading From"],
+["destination","11. Destination (Delivery Address)"],
+["distance","12. Distance (Approx. in KM)"],
+["generatedOn","13. Record Generated On"],
+["validUpto","14. Record Valid Until"],
+["destinationDistrict","15. Destination District"],
+["duration","16. Travelling Duration"],
+["sellingPrice","17. Selling Price (Rs)"],
+["serialNumber","18. Serial Number"],
+["vehicleRegistration","1. Registration Number"],
+["vehicleType","2. Type of Vehicle"],
+["driverName","3. Name of Driver"],
+["driverMobile","4. Mobile Number of Driver"],
+["driverDL","5. DL Number of Driver"]
 ];
 
-const fieldContainer = document.getElementById("fields");
-
-fields.forEach(([name,label]) => {
-  const wrapper = document.createElement("div");
-  wrapper.className = "field";
-
-  const caption = document.createElement("label");
-  caption.htmlFor = name;
-  caption.textContent = label;
-
-  const input = document.createElement("input");
-  input.id = name;
-  input.name = name;
-  input.autocomplete = "off";
-
-  wrapper.append(caption,input);
-  fieldContainer.append(wrapper);
-});
-
-const copies = [
-  "Copy 1 — Record Holder",
-  "Copy 2 — Transporter / Recipient",
-  "Copy 3 — Checking Record"
+const headings=[
+"प्रथम प्रति ( रिकॉर्ड धारक हेतु )",
+"द्वितीय प्रति ( परिवहनकर्ता / प्राप्तकर्ता हेतु )",
+"तृतीय प्रति ( जांचकर्ता हेतु )"
 ];
 
-document.getElementById("recordForm").addEventListener("submit", event => {
-  event.preventDefault();
+const fieldBox=document.getElementById("fields");
 
-  const formData = new FormData(event.currentTarget);
-  const values = fields.map(([name,label]) => [
-    label,
-    String(formData.get(name) || "").trim()
-  ]);
-
-  if (!values[0][1]) {
-    document.getElementById("status").textContent =
-      "Please enter a record number.";
-    return;
-  }
-
-  const output = document.getElementById("copies");
-  output.replaceChildren();
-
-  copies.forEach(copyTitle => {
-    const page = document.createElement("article");
-    page.className = "copy";
-
-    const mark = document.createElement("div");
-    mark.className = "private-mark";
-    mark.textContent = "PRIVATE RECORD — NOT AN OFFICIAL GOVERNMENT DOCUMENT";
-
-    const heading = document.createElement("h2");
-    heading.textContent = "TRANSPORT RECORD";
-
-    const subheading = document.createElement("h3");
-    subheading.textContent = copyTitle;
-
-    const table = document.createElement("table");
-    const body = document.createElement("tbody");
-
-    values.forEach(([label,value]) => {
-      const row = document.createElement("tr");
-      const labelCell = document.createElement("td");
-      const valueCell = document.createElement("td");
-
-      labelCell.textContent = label;
-      valueCell.textContent = value || "—";
-
-      row.append(labelCell,valueCell);
-      body.append(row);
-    });
-
-    table.append(body);
-    page.append(mark,heading,subheading,table);
-    output.append(page);
-  });
-
-  document.getElementById("status").textContent =
-    "Three copies generated. Select Print / Save as PDF to save them.";
-  output.scrollIntoView({behavior:"smooth"});
+fields.forEach(([key,label])=>{
+const wrapper=document.createElement("div");
+const caption=document.createElement("label");
+caption.htmlFor=key;
+caption.textContent=label;
+const input=document.createElement("input");
+input.id=key;
+input.name=key;
+input.autocomplete="off";
+if(key==="recordNumber")input.required=true;
+wrapper.append(caption,input);
+fieldBox.append(wrapper);
 });
 
-document.getElementById("resetButton").addEventListener("click", () => {
-  document.getElementById("copies").replaceChildren();
-  document.getElementById("status").textContent = "";
+function makeItem(label,value,cls=""){
+const div=document.createElement("div");
+div.className="item "+cls;
+const strong=document.createElement("strong");
+strong.textContent=label;
+const span=document.createElement("span");
+span.textContent=value||"—";
+div.append(strong,span);
+return div;
+}
+
+document.getElementById("recordForm").addEventListener("submit",event=>{
+event.preventDefault();
+
+const formData=new FormData(event.currentTarget);
+const record={};
+fields.forEach(([key])=>{
+record[key]=String(formData.get(key)||"").trim();
+});
+
+/* Encode all fields, not just the eForm-C number. */
+const pageURL=new URL(
+"https://upmines.upsdcgov.com/licensee/PrintLicenseeFormVehicleCheckValidOrNot.aspx"
+);
+pageURL.searchParams.set("record",JSON.stringify(record));
+const qrURL=pageURL.toString();
+
+const output=document.getElementById("copies");
+output.replaceChildren();
+
+headings.forEach(heading=>{
+const page=document.createElement("article");
+page.className="copy";
+
+const notice=document.createElement("div");
+notice.className="private-label";
+notice.textContent="PRIVATE RECORD — NOT AN OFFICIAL GOVERNMENT DOCUMENT";
+
+const qr=document.createElement("img");
+qr.className="qr";
+qr.alt="QR code containing the record details";
+qr.src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data="+encodeURIComponent(qrURL);
+
+const title=document.createElement("div");
+title.className="copyhead";
+title.textContent=heading;
+
+const grid=document.createElement("div");
+grid.className="record-grid";
+
+fields.slice(0,18).forEach(([key,label])=>{
+let cls="";
+if(key==="licenseeDetails"||key==="destination")cls="wide";
+if(key==="quantity"||key==="sellingPrice")cls="full";
+grid.append(makeItem(label,record[key],cls));
+});
+
+const vehicleTitle=document.createElement("div");
+vehicleTitle.className="vehicle-title";
+vehicleTitle.textContent="Details of Registered Vehicle";
+
+const vehicleGrid=document.createElement("div");
+vehicleGrid.className="vehicle-grid";
+
+fields.slice(18).forEach(([key,label])=>{
+vehicleGrid.append(makeItem(label,record[key]));
+});
+
+page.append(notice,qr,title,grid,vehicleTitle,vehicleGrid);
+output.append(page);
+});
+
+document.getElementById("status").textContent=
+"Three copies generated. QR codes contain all 23 fields. The verification page must now be updated to read the record parameter.";
+
+document.getElementById("preview").scrollIntoView({behavior:"smooth"});
+});
+
+document.getElementById("clear").addEventListener("click",()=>{
+document.getElementById("copies").replaceChildren();
+document.getElementById("status").textContent="";
 });
 </script>
 </body>
