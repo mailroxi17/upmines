@@ -1,510 +1,128 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mining</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Record Verification</title>
 <style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-        background: #f7f5ef;
-        color: #222;
-        font-family: "Times New Roman", Times, serif;
-    }
-
-    .back {
-        position: absolute;
-        top: 18px;
-        left: 38px;
-        font-size: 16px;
-    }
-
-    .certificate {
-        width: 850px;
-        max-width: calc(100% - 40px);
-        margin: 52px auto 20px auto;
-        background: #fff;
-        border: 2px solid #8f3b32;
-        border-radius: 4px;
-        overflow: hidden;
-    }
-
-    /* ORIGINAL HEADER */
-
-    .official-heading {
-        text-align: center;
-        padding: 8px 15px 4px 15px;
-        background: #f2f2f2;
-    }
-
-    .official-heading .main {
-        font-size: 25px;
-        font-weight: bold;
-        line-height: 1.05;
-    }
-
-    .official-heading .sub {
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 1.15;
-    }
-
-    .official-heading .rule {
-        font-size: 16px;
-        font-weight: bold;
-        line-height: 1.15;
-    }
-
-    .eform {
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        margin-top: 16px;
-        margin-bottom: 8px;
-        background: #f2f2f2;
-    }
-
-    /* MAROON BAR */
-
-    .red-bar {
-        margin: 0 15px;
-        background: #9b4545;
-        color: #fff;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 3px 5px;
-        border: 1px solid #873737;
-    }
-    .initial {
-        font-size: 1.15em;
-        font-weight: bold;
-}
-
-    /* MAIN TABLE */
-
-    .main-table {
-        width: calc(100% - 30px);
-        margin: 0 15px;
-        border-collapse: separate;
-        border-spacing: 1px 1px;
-        table-layout: fixed;
-    }
-
-    .main-table td {
-        border: 1px solid #c8c8c8;
-        padding: 7px 10px;
-        font-size: 14px;
-        line-height: 1.12;
-        vertical-align: middle;
-        background: #fff;
-    }
-
-    .label {
-        width: 25%;
-        font-weight: normal;
-    }
-
-    .value {
-        width: 25%;
-        font-weight: normal;
-    }
-
-    .tall-row td {
-        height: 76px;
-        vertical-align: middle;
-    }
-
-    .medium-row td {
-        height: 55px;
-    }
-
-    /* VEHICLE SECTION */
-
-    .vehicle-box {
-        border: 1px solid #9b4545;
-        margin-top: 0;
-        padding: 0 15px;
-    }
-
-    .vehicle-title {
-        background: #9b4545;
-        color: white;
-        text-align: center;
-        font-size: 16px;
-        font-weight: bold;
-        padding: 3px;
-    }
-
-    .vehicle-table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 1px 1px;
-        table-layout: fixed;
-    }
-
-    .vehicle-table td {
-        border: 1px solid #c8c8c8;
-        padding: 7px 10px;
-        font-size: 14px;
-        line-height: 1.12;
-        vertical-align: middle;
-        background: #fff;
-    }
-
-    .vehicle-label {
-        width: 25%;
-        font-weight: normal;
-    }
-
-    .vehicle-value {
-        width: 25%;
-        font-weight: normal;
-    }
-
-    /* VALIDITY */
-
-    .validity {
-        text-align: center;
-        font-size: 19px;
-        padding: 12px 5px;
-        font-weight: normal;
-        background: #fff;
-    }
-
-    @media (max-width: 900px) {
-
-        .certificate {
-            width: calc(100% - 20px);
-            max-width: none;
-            margin-top: 45px;
-        }
-
-        .back {
-            left: 15px;
-        }
-    }
-
-    @media (max-width: 600px) {
-
-        .official-heading .main {
-            font-size: 19px;
-        }
-
-        .official-heading .sub,
-        .official-heading .rule {
-            font-size: 13px;
-        }
-
-        .eform {
-            font-size: 18px;
-        }
-
-        .main-table td,
-        .vehicle-table td {
-            font-size: 12px;
-            padding: 6px;
-        }
-
-        .validity {
-            font-size: 15px;
-        }
-    }
+*{box-sizing:border-box}
+body{margin:0;background:#f4f5f7;color:#222;font-family:Arial,sans-serif}
+header{background:#183153;color:white;padding:22px;text-align:center}
+main{max-width:1100px;margin:24px auto;padding:0 15px}
+.notice{background:#fff3cd;border:1px solid #e5ca79;padding:13px;margin-bottom:18px;line-height:1.5}
+.panel{background:white;border:1px solid #ddd;padding:22px;border-radius:7px}
+h2{font-size:19px;margin-top:24px;border-bottom:2px solid #9b4545;padding-bottom:9px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}
+.item{padding:12px 8px;border-bottom:1px solid #ddd;overflow-wrap:anywhere;line-height:1.45}
+.label{font-size:12px;color:#555;font-weight:bold;margin-bottom:5px}
+.value{font-size:15px;white-space:pre-wrap}
+.status{text-align:center;padding:28px;background:white;border:1px solid #ddd;border-radius:7px}
+footer{text-align:center;color:#666;font-size:12px;margin:22px}
+@media(max-width:650px){.grid{grid-template-columns:1fr}.panel{padding:14px}}
 </style>
 </head>
-
 <body>
-
-<a class="back" href="/">Back</a>
-
-<div class="certificate">
-
-    <div class="official-heading">
-
-        <div class="main">
-            Directorate Of Geology &amp; Mining Uttar Pradesh
-        </div>
-
-        <div class="sub">
-            The Uttar Pradesh Minerals (Prevention of Illegal Mining, Transportation and Storage) Rules, 2018
-        </div>
-
-        <div class="rule">
-            eForm-C Pass For Transportation of Minor Mineral See Rule-7(III)
-        </div>
-
-    </div>
-
-    <div class="eform">
-        eForm-C
-    </div>
-
-    <div class="red-bar">
-        <span class="initial">V</span>ALID
-         FOR ONE TRIP ONLY
-        <span class="initial ampersand">&amp;</span>
-        <span class="initial">S</span>EE
-        <span class="initial">R</span>ULE-5(2)
-    </div>
-
-    <table class="main-table">
-
-        <tr>
-            <td class="label">1. eForm-C No.</td>
-            <td class="value" id="eid">Not provided</td>
-
-            <td class="label">2. Licensee Id:</td>
-            <td class="value">31342506990014</td>
-        </tr>
-
-        <tr>
-            <td class="label">3. Name of Licensee:</td>
-            <td class="value">MULAYAM SINGH</td>
-
-            <td class="label">4. Mobile Number Of Licensee:</td>
-            <td class="value">7453062511</td>
-        </tr>
-
-        <tr class="tall-row">
-
-            <td class="label">
-                5. Destination District :
-            </td>
-
-            <td class="value">
-                PATNA
-            </td>
-
-            <td class="label">
-                6. Licensee Details<br>
-                [Address,Village,<br>
-                (Gata/Khand),Areal]:
-            </td>
-
-            <td class="value">
-                RAJEPUR POST<br>
-                HARSINGHPUR<br>
-                HUSAINPUR AMRITPUR<br>
-                FARRUKHABAD,<br>
-                KHANPUR, 320 360, 0.902
-            </td>
-
-        </tr>
-
-        <tr>
-
-            <td class="label">
-                7. Tehsil Of License:
-            </td>
-
-            <td class="value">
-                FARRUKHABAD
-            </td>
-
-            <td class="label">
-                8. District Of License:
-            </td>
-
-            <td class="value">
-                FARRUKHABAD
-            </td>
-
-        </tr>
-
-        <tr>
-
-            <td class="label">
-                9. Quantity Transported:
-            </td>
-
-            <td class="value">
-                25 M3
-            </td>
-
-            <td class="label">
-                10. Name Of Mineral:
-            </td>
-
-            <td class="value">
-                BAJRI(SINGLE)
-            </td>
-
-        </tr>
-
-        <tr class="medium-row">
-
-            <td class="label">
-                11. Loading From:
-            </td>
-
-            <td class="value">
-                FARRUKHABAD
-            </td>
-
-            <td class="label">
-                12. Destination (Delivery Address):
-            </td>
-
-            <td class="value">
-                RABINDRA KUMAR<br>
-                SHARMA VIKRAM<br>
-                PATNA BIHAR
-            </td>
-
-        </tr>
-
-        <tr>
-
-            <td class="label">
-                13. Distance(Approx):
-            </td>
-
-            <td class="value">
-                733 K.M.
-            </td>
-
-            <td class="label">
-                14. Traveling Duration :
-            </td>
-
-            <td class="value">
-                43 Hr (Approx)
-            </td>
-
-        </tr>
-
-        <tr>
-
-            <td class="label">
-                15. eForm-C Generated On:
-            </td>
-
-            <td class="value">
-                04-03-2026 02:50:32 PM
-            </td>
-
-            <td class="label">
-                16. eForm-C Valid Upto:
-            </td>
-
-            <td class="value">
-                06-03-2026 09:55:32 AM
-            </td>
-
-        </tr>
-
-        <tr>
-
-            <td class="label">
-                17. Selling Price(Rs per tonne):
-            </td>
-
-            <td class="value">
-                280
-            </td>
-
-            <td class="label">
-                18.Serial Number:
-            </td>
-
-            <td class="value">
-                AAYGG446080
-            </td>
-
-        </tr>
-
-    </table>
-
-    <div class="vehicle-box">
-
-        <div class="vehicle-title">      
-             <span class="initial">D</span>ETAILS
-             <span class="initial">O</span>F
-             <span class="initial">R</span>EGISTERED
-             <span class="initial">V</span>EHICLE
-        </div>
-
-        <table class="vehicle-table">
-
-            <tr>
-
-                <td class="vehicle-label">
-                    1. Registration Number :
-                </td>
-
-                <td class="vehicle-value">
-                    UP12CT8705
-                </td>
-
-                <td class="vehicle-label">
-                    2. Name Of Driver :
-                </td>
-
-                <td class="vehicle-value">
-                    HAJAR
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td class="vehicle-label">
-                    3. Gross Vehicle Weight in Tonne:
-                </td>
-
-                <td class="vehicle-value">
-                    0
-                </td>
-
-                <td class="vehicle-label">
-                    4. Carrying capacity of vehicle in Tonne:
-                </td>
-
-                <td class="vehicle-value">
-                    0
-                </td>
-
-            </tr>
-
-            <tr>
-
-                <td class="vehicle-label">
-                    5. Mobile Number Of Driver:
-                </td>
-
-                <td class="vehicle-value">
-                    7310585721
-                </td>
-
-                <td class="vehicle-label"></td>
-
-                <td class="vehicle-value"></td>
-
-            </tr>
-
-        </table>
-
-    </div>
-
-    <div class="validity">
-        This eForm-C is valid up to 06-03-2026 09:55:32 AM
-    </div>
-
+<header>
+<h1>Record Verification</h1>
+<p>Record details provided with this QR link</p>
+</header>
+<main>
+<div class="notice">
+<strong>Private record display.</strong>
+This page displays information carried in the QR URL.
+It does not independently authenticate the record or confirm
+that it was issued by a government authority.
 </div>
-
+<div id="result" class="status">Reading record details…</div>
+</main>
+<footer>Private record display</footer>
 <script>
-    const params = new URLSearchParams(window.location.search);
-    const eId = params.get("eId");
+(function(){
+const labels=[
+["recordNumber","1. eForm-C No."],
+["licenseeId","2. Licensee ID"],
+["licenseeName","3. Name of Licensee"],
+["licenseeMobile","4. Mobile Number of Licensee"],
+["licenseeDetails","5. Licensee Details [Address, Village, Gata/Khand, Area]"],
+["tehsil","6. Tehsil of License"],
+["district","7. District of License"],
+["quantity","8. Quantity Transported (Cubic Meter / Ton)"],
+["mineral","9. Name of Mineral"],
+["loadingFrom","10. Loading From"],
+["destination","11. Destination (Delivery Address)"],
+["distance","12. Distance (Approx. in KM)"],
+["generatedOn","13. Record Generated On"],
+["validUpto","14. Record Valid Until"],
+["destinationDistrict","15. Destination District"],
+["duration","16. Travelling Duration"],
+["sellingPrice","17. Selling Price (Rs)"],
+["serialNumber","18. Serial Number"],
+["vehicleRegistration","1. Registration Number"],
+["vehicleType","2. Type of Vehicle"],
+["driverName","3. Name of Driver"],
+["driverMobile","4. Mobile Number of Driver"],
+["driverDL","5. DL Number of Driver"]
+];
 
-    document.getElementById("eid").textContent =
-        eId || "Not provided";
+const params=new URLSearchParams(window.location.search);
+const raw=params.get("record");
+const result=document.getElementById("result");
+
+function addItem(grid,label,value){
+ const item=document.createElement("div");
+ item.className="item";
+ const l=document.createElement("div");
+ l.className="label";
+ l.textContent=label;
+ const v=document.createElement("div");
+ v.className="value";
+ v.textContent=(value===undefined||value===null||value==="")?"—":String(value);
+ item.append(l,v);
+ grid.append(item);
+}
+
+if(!raw){
+ result.textContent="No record data was found in this URL. Please scan a QR code generated by the updated generator.";
+ return;
+}
+
+let record;
+try{
+ record=JSON.parse(raw);
+ if(!record||typeof record!=="object"||Array.isArray(record)){
+  throw new Error("Invalid record");
+ }
+}catch(error){
+ result.textContent="The record data in this URL could not be read. Please generate a new QR code and try again.";
+ return;
+}
+
+result.className="panel";
+const heading=document.createElement("h2");
+heading.textContent="Record Details";
+result.append(heading);
+
+const grid=document.createElement("div");
+grid.className="grid";
+labels.slice(0,18).forEach(([key,label])=>addItem(grid,label,record[key]));
+result.append(grid);
+
+const vehicleHeading=document.createElement("h2");
+vehicleHeading.textContent="Details of Registered Vehicle";
+result.append(vehicleHeading);
+
+const vehicleGrid=document.createElement("div");
+vehicleGrid.className="grid";
+labels.slice(18).forEach(([key,label])=>addItem(vehicleGrid,label,record[key]));
+result.append(vehicleGrid);
+
+const note=document.createElement("div");
+note.className="notice";
+note.style.marginTop="20px";
+note.textContent="This page displays the data embedded in the QR URL. It is not a live database lookup and does not independently verify authenticity.";
+result.append(note);
+})();
 </script>
-
 </body>
 </html>
